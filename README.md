@@ -1,3 +1,36 @@
+# GoalVerse
+
+**GoalVerse** is a personal goal tracking application built with NestJS, TypeORM, and PostgreSQL. Users can set, track, and share their self-development goals, and create posts based on their progress.
+
+## Technologies Used
+
+- **NestJS**: A progressive Node.js framework for building efficient and scalable server-side applications.
+- **TypeORM**: An ORM tool that works with TypeScript and supports various SQL databases, including PostgreSQL.
+- **PostgreSQL**: A powerful, open-source object-relational database system.
+- **class-transformer**: A library to transform plain JavaScript objects into class objects and vice versa.
+- **class-validator**: A library for validating class properties with decorators.
+- **bcrypt**: A library for hashing passwords.
+- **multer**: A middleware for handling `multipart/form-data`, primarily used for file uploads.
+- **socket.io**: A library for real-time, bidirectional communication between web clients and servers.
+
+---
+
+# GoalVerse
+
+**GoalVerse**는 NestJS, TypeORM, PostgreSQL을 사용하여 개발된 개인 목표 추적 애플리케이션입니다. 사용자는 자신의 자기 계발 목표를 설정하고 추적하며, 진행 상황을 바탕으로 게시물을 작성하고 공유할 수 있습니다.
+
+## 사용된 기술
+
+- **NestJS**: 효율적이고 확장 가능한 서버 측 애플리케이션을 구축하기 위한 진보적인 Node.js 프레임워크입니다.
+- **TypeORM**: TypeScript와 호환되며 PostgreSQL을 포함한 다양한 SQL 데이터베이스를 지원하는 ORM 도구입니다.
+- **PostgreSQL**: 강력하고 오픈 소스인 객체-관계 데이터베이스 시스템입니다.
+- **class-transformer**: 평범한 JavaScript 객체를 클래스 객체로 변환하고 그 반대도 지원하는 라이브러리입니다.
+- **class-validator**: 클래스 속성에 대해 데코레이터를 사용하여 검증할 수 있는 라이브러리입니다.
+- **bcrypt**: 비밀번호를 해싱하는 라이브러리입니다.
+- **multer**: `multipart/form-data`를 처리하는 미들웨어로, 주로 파일 업로드에 사용됩니다.
+- **socket.io**: 웹 클라이언트와 서버 간의 실시간 양방향 통신을 위한 라이브러리입니다.
+
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
