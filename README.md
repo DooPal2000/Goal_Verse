@@ -1,3 +1,9 @@
+
+<p align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+</p>
+
+
 # GoalVerse
 
 **GoalVerse** is a personal goal tracking application built with NestJS, TypeORM, and PostgreSQL. Users can set, track, and share their self-development goals, and create posts based on their progress.
@@ -11,7 +17,6 @@
 - **class-validator**: A library for validating class properties with decorators.
 - **bcrypt**: A library for hashing passwords.
 - **multer**: A middleware for handling `multipart/form-data`, primarily used for file uploads.
-- **socket.io**: A library for real-time, bidirectional communication between web clients and servers.
 
 ---
 
@@ -28,12 +33,7 @@
 - **class-validator**: 클래스 속성에 대해 데코레이터를 사용하여 검증할 수 있는 라이브러리입니다.
 - **bcrypt**: 비밀번호를 해싱하는 라이브러리입니다.
 - **multer**: `multipart/form-data`를 처리하는 미들웨어로, 주로 파일 업로드에 사용됩니다.
-- **socket.io**: 웹 클라이언트와 서버 간의 실시간 양방향 통신을 위한 라이브러리입니다.
 
-
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
 
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
