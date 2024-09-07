@@ -1,3 +1,6 @@
+postgres-data/
+.env
+
 # Logs
 logs
 *.log
