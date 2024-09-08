@@ -1,9 +1,12 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
-import { ENV_JWT_SECRET_KEY } from 'src/common/const/env-keys.const';
+import { ENV_HASH_ROUNDS_KEY, ENV_JWT_SECRET_KEY } from 'src/common/const/env-keys.const';
 import { UsersModel } from 'src/users/entity/users.entity';
 import { UsersService } from 'src/users/users.service';
+import * as bcrypt from 'bcrypt';
+import { RegisterUserDto } from './dto/register-user.dto';
+
 
 @Injectable()
 export class AuthService {
@@ -63,6 +66,14 @@ export class AuthService {
         if (split.length !== 2) {
             throw new UnauthorizedException(`잘못된 유형의 토큰입니다.`);
         }
+
+        const email = split[0];
+        const password = split[1];
+
+        return {
+            email,
+            password,
+        }
     }
 
     verifyToken(token: string) {
@@ -105,6 +116,56 @@ export class AuthService {
             refreshToken: this.signToken(user, true),
         }
     }
+
+    async authenticateWithEmailAndPassword(user: Pick<UsersModel, 'email' | 'password'>) {
+        /**
+        *     1. 사용자 존재하는지 확인
+        *     2. 비밀번호 맞는지 확인
+        *     3. 모두 통과되면 찾은 사용자 정보 반환
+        */
+
+        const existingUser = await this.usersService.getUserByEmail(user.email);
+
+        if (!existingUser) {
+            throw new UnauthorizedException('존재하지 않는 사용자입니다.');
+        }
+
+        /**
+         * 파라미터
+         * 
+         * 1) 입력된 비밀번호
+         * 2)기존 해시 -> 사용자 정보에 저장돼있는 hash
+         */
+        const passOk = await bcrypt.compare(user.password, existingUser.password);
+
+        if (!passOk) {
+            throw new UnauthorizedException('비밀번호가 틀렸습니다.');
+        }
+
+        return existingUser;
+    }
+
+    async loginWithEmail(user: Pick<UsersModel, 'email' | 'password'>) {
+        const existingUser = await this.authenticateWithEmailAndPassword(user);
+
+        return this.loginUser(existingUser);
+    }
+
+    async registerWithEmail(user: RegisterUserDto) {
+        const hash = await bcrypt.hash(
+            user.password,
+            parseInt(this.configService.get<string>(ENV_HASH_ROUNDS_KEY)),
+        );
+
+        const newUser = await this.usersService.createUser({
+            ...user,
+            password: hash,
+        });
+        return this.loginUser(newUser);
+    }
+
+
+
 
 
 
