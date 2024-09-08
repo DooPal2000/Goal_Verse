@@ -7,6 +7,7 @@ import { lengthValidationMessage } from "src/common/validation-message/length-va
 import { stringValidationMessage } from "src/common/validation-message/string-validation.message";
 import { emailValidationMessage } from "src/common/validation-message/email-validation.message";
 import { Exclude } from "class-transformer";
+import { CommentsModel } from "src/posts/comments/entity/comments.entity";
 
 @Entity()
 // @Exclude() // 보안이 매우 중요한 객체라면, entity 자체를 exclude 할 수도 있다. 그 이후에 expose() 를 활용하는 방식이다.
