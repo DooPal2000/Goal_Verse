@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { ClassSerializerInterceptor, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
@@ -13,6 +13,9 @@ import { UsersModel } from './users/entity/users.entity';
 import { ImageModel } from './common/entity/image.entity';
 import { CommentsModel } from './posts/comments/entity/comments.entity';
 import { ConfigModule } from '@nestjs/config';
+import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
+import { AccessTokenGuard } from './auth/guard/bearer-token.guard';
+import { RolesGuard } from './users/guard/roles.guard';
 
 @Module({
   imports: [
@@ -45,6 +48,19 @@ import { ConfigModule } from '@nestjs/config';
 
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, {
+    provide: APP_INTERCEPTOR,
+    useClass: ClassSerializerInterceptor,
+  },
+    {
+      // 모든 api 를 private 로 만든 건데, 이를 개선해야 한다. public 으로 개별 api 를 지정해야 한다. (이 방법이 더 실무적이다.)
+      provide: APP_GUARD,
+      useClass: AccessTokenGuard
+    },
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard
+    }
+  ],
 })
 export class AppModule { }
