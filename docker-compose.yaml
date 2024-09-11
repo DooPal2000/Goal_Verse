@@ -9,5 +9,5 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1234
-      POSTGRES_DB: goal_verse
+      POSTGRES_DB: postgres
       
